@@ -1,4 +1,4 @@
-function encotrarReperidas(palabras) {
+function encotrarRepetidas(palabras) {
     const contador = {}
     for (const palabra of palabras) {
         contador[palabra] = (contador[palabra] || 0) + 1
@@ -12,5 +12,5 @@ function encotrarReperidas(palabras) {
     return repetidas
 }
 const palabras = ["hola", "mundo", "hola", "javascript", "mundo"]
-const repetidas = encotrarReperidas(palabras)
+const repetidas = encotrarRepetidas(palabras)
 console.log(repetidas)
