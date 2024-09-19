@@ -1,33 +1,22 @@
-function contarPalabras(texto) {
-    const palabras = texto.split(' ');
-    return palabras.length;
-}
-const texto = "Hola, mundo. Esto es un ejemplo.";
-const numPalabras = contarPalabras(texto);
-console.log(`Numeros de palabras: ${numPalabras}`)
-
-function longitudMediaPalabras(texto) {
-    // Dividir el texto en palabras (considerando puntuación y múltiples espacios)
-    const palabras = texto.match(/\b\w+\b/g);
-    // Verificar si hay palabras
+function analizarTexto(texto) {
+    const palabras = texto.match(/\b\w+\b/g); // Encuentra todas las palabras
+    const oraciones = texto.split(/[.?!]+/).filter(oracion => oracion.trim().length > 0); // Encuentra todas las oraciones
+    
     if (!palabras) {
-      return 0; // No hay palabras
+      return { numPalabras: 0, longitudPromedio: 0, numOraciones: 0 };
     }
-    // Calcular la longitud total de todas las palabras
+    
+    const numPalabras = palabras.length;
     const longitudTotal = palabras.reduce((total, palabra) => total + palabra.length, 0);
-    // Calcular la longitud promedio
-    const longitudPromedio = longitudTotal / palabras.length;
-    return longitudPromedio;
+    const longitudPromedio = longitudTotal / numPalabras;
+    
+    return {
+        numPalabras,
+        longitudPromedio,
+        numOraciones: oraciones.length
+    };
 }
-const texto2 = "Hola, mundo. Esto es un ejemplo de texto. para calcular la longitud media de las palabras.";
-const promedio = longitudMediaPalabras(texto);
-console.log("La longitud media de las palabras es:", promedio);
 
-// Revisar este parte antes de unir las funciones
-function contarOracionesSimple(texto) {
-    const oraciones = texto.split(/[.?!]/);
-    return oraciones.length;
-}
-const texto3 = "Hola, mundo. Esto es un ejemplo de texto para calcular la longitud media de las palabras.";
-const cantidad = contarOracionesSimple(texto);
-console.log(cantidad);
+const texto = "Hola, mundo. Esto es un ejemplo.";
+const { numPalabras, longitudPromedio, numOraciones } = analizarTexto(texto);
+console.log(`Número de palabras: ${numPalabras}, Longitud promedio de palabras: ${longitudPromedio.toFixed(2)}, Cantidad de oraciones: ${numOraciones}`);
