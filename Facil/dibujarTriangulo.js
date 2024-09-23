@@ -1,11 +1,11 @@
 function dibujarTriangulo(lados) {
     let result = ''
     // Iterar sobre cada fila del triangulo
-    for (let i = 0; i <= lados ; i++) {
+    for (let i = 1; i <= lados ; i++) {
         // Calcular los espacio en blanco
-        let espacios = ' '.repeat(lados - 1)
+        let espacios = ' '.repeat(lados - i)
         // Agregamos los asteriscos para cada fila
-        let asteriscos = '*'.repeat(i * 2 - 1)
+        let asteriscos = '*'.repeat(2 * i - 1)
         // Concatenamos los espacios y asteriscos y un '\n'
         result += espacios + asteriscos + '\n'
     }
